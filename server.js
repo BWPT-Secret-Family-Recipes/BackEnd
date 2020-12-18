@@ -5,6 +5,7 @@ const session = require('express-session');
 const cors = require('cors');
 
 const ApiRouter = require('./api/routes/apiRoutes');
+const recipes = require('./api/content/recipes/recipe-model');
 
 const server = express();
 const knexSessionStore = require('connect-session-knex')(session);
@@ -49,9 +50,16 @@ server.use('/api', ApiRouter);
 
 
 
-server.get('/', (req, res) => {
-    res.send('Hello World')
-})
+
+server.get("/", async (req, res) => {
+  try {
+    const recipe = await recipes.find();
+    res.json(recipe);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'error with db', error: err });
+  }
+});
 
 
 
