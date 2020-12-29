@@ -28,35 +28,32 @@ router.post('/login', async (req, res) => {
     
         if (user && bcrypt.compareSync(password, user.password)) {
          const token = generateToken(user);
-
-
-            req.session.user = user;
+            // req.session.user = user;
             res.status(200).json({ message: `Welcome ${user.username}!`, token});
         } else {
        
             res.status(401).json({ message: 'invalid credentials' });
         }
     } catch (err) {
-
-    
         res.status(500).json(err);
     }
 });
 
-router.delete('/logout', (req, res) => {
-    if (req.session) {
+
+// router.delete('/logout', (req, res) => {
+//     if (req.session) {
     
-        req.session.destroy((err) => {
-            if (err) {
-                res.status(400).json({ message: 'error logging out:', error: err });
-            } else {
-                res.json({ message: 'logged out' });
-            }
-        });
-    } else {
-        res.end();
-    }
-});
+//         req.session.destroy((err) => {
+//             if (err) {
+//                 res.status(400).json({ message: 'error logging out:', error: err });
+//             } else {
+//                 res.json({ message: 'logged out' });
+//             }
+//         });
+//     } else {
+//         res.end();
+//     }
+// });
 
 
 module.exports = router;

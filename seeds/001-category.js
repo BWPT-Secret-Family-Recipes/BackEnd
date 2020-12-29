@@ -1,10 +1,10 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('tags').del()
+  return knex('categories').del()
     .then(function () {
       // Inserts seed entries
-      return knex('tags').insert([
+      return knex('categories').insert([
         {id: 1, name: 'Dinner'},
         {id: 2, name: 'Breakfast'},
         {id: 3, name: 'Lunch'},
@@ -19,7 +19,6 @@ exports.seed = function(knex) {
         {id: 12, name: 'Beverages'},
         {id: 13, name: 'Turkey'},
         {id: 14, name: 'Sausage'},
-
       ]);
     });
 };
