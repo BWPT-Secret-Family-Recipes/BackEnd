@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.use('/users', Restricted, UserRouter);
 router.use('/auth', AuthRouter);
-router.use('/recipe', RecipeRouter)
+router.use('/recipe', Restricted, RecipeRouter)
 
 
 

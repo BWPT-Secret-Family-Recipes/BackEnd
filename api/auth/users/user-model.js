@@ -35,7 +35,7 @@ async function findById(id) {
 async function findRecipe(id) {
     try {
         const recipe = await
-            db('recipe-update as r')
+            db('recipe-update3 as r')
                 .join('users as u', 'u.id', 'r.user_id')
                 .where({ user_id: id })
                 .select('r.id', 'u.username', 'r.title', 'r.ingredients', 'r.instructions', 'r.tags');
