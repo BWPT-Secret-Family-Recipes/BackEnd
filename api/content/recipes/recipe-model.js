@@ -10,18 +10,18 @@ const db = require('../../../data/db-config');
 }
  
  function find() {
-    return db("recipe-update3").select("id", "title", "source", "instructions", "igredients", "tags").orderBy("id");
+    return db("recipe").select("id", "title", "source", "instructions", "igredients", "tags").orderBy("id");
   }
 
 
 function findBy(filter) {
-    return db("recipe-update3").where(filter).orderBy("id");
+    return db("recipe").where(filter).orderBy("id");
   }
 
 
   async function findById(id) {
     try {
-        const recipe = await db('recipe-update3').where({ id }).first();
+        const recipe = await db('recipe').where({ id }).first();
         return recipe;
     } catch (err) {
         throw err;
@@ -31,7 +31,7 @@ function findBy(filter) {
 
   async function add(recipeData, id, username) {
     try {
-        const recipe_ids = await db('recipe-update3 as r').join('users as u', 'u.id', 'r.user_id')
+        const recipe_ids = await db('recipe as r').join('users as u', 'u.id', 'r.user_id')
         .where({ user_id: id })
         .join('users as u', 'u.username', 'r.source' )
         .where({source: username}).insert(recipeData);
@@ -46,7 +46,7 @@ function findBy(filter) {
 
 async function update(id, changes) {
     try {
-        await db('recipe-update3').where({ id }).update(changes);
+        await db('recipe').where({ id }).update(changes);
         return await findById(id);
     } catch (err) {
         throw err;
@@ -55,7 +55,7 @@ async function update(id, changes) {
 
 async function remove(id) {
     try {
-        return await db('recipe-update3').del().where({ id });
+        return await db('recipe').del().where({ id });
     } catch (err) {
         throw err;
     }
