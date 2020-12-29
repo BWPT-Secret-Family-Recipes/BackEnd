@@ -14,11 +14,11 @@ exports.up = function(knex, Promise) {
     }).createTable('recipe', function(table) {
       table.increments()
       table.string('title').notNullable()
-      table.string('source').unsigned().notNullable().references('username').inTable('users')
+      table.string('source').unsigned().references('username').inTable('users')
       table.string('ingredients').notNullable()
       table.string('instructions').notNullable()
-      table.integer('category_id').unsigned().notNullable().references('id').inTable('categories').onUpdate('CASCADE').onDelete('CASCADE')
-      table.integer('user_id').unsigned().notNullable().references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('category_id').unsigned().references('id').inTable('categories').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('user_id').unsigned().references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE')
       table.timestamp('created_at').defaultTo(knex.fn.now())
       table.timestamp('updated_at').defaultTo(knex.fn.now())
     }).createTable('query', function(table) {

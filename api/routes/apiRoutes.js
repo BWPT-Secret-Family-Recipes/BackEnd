@@ -8,7 +8,7 @@ const RecipeRouter = require('../content/recipes/recipe-router');
 
 const router = express.Router();
 
-router.use('/users', Restricted, UserRouter);
+router.use('/users',Restricted, UserRouter);
 router.use('/auth', AuthRouter);
 router.use('/recipe', Restricted, RecipeRouter)
 
