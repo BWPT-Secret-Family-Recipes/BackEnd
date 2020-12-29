@@ -26,8 +26,10 @@ password: string
 ### Endpoints
 
 ```
+// Get All Recipes: "/"
 
-// Registration (POST):  /api/auth/register
+
+// Registration (POST):  "/api/auth/register"
 
 Required Fields:
 
@@ -48,7 +50,7 @@ Status Codes:
 
 
 
-// Login (POST):  /api/auth/login
+// Login (POST):  "/api/auth/login"
 
 Required Fields:
 
