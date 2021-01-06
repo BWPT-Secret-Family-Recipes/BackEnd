@@ -10,8 +10,11 @@ const db = require('../../../data/db-config');
 }
  
  function find() {
-    return db("recipe")
-    .select("id", "title", "instructions", "ingredients", "categories").orderBy("id")
+    return db("recipe as r")
+    .join('category as c', 'c.id', 'r.category_id')
+    .join('users as u', 'u.id', 'r.user_id')
+    .select("r.id", "u.username", "r.title", "r.instructions", "r.ingredients", 'c.category_name')
+    
   }
 
 
@@ -30,12 +33,12 @@ function findBy(filter) {
 }
 
 
-  async function add(recipeData, id, username) {
+  async function add(recipeData, id) {
     try {
-        const recipe_ids = await db('recipe as r').join('users as u', 'u.id', 'r.user_id')
+        const recipe_ids = await db('recipe as r')
+        .join('users as u', 'u.id', 'r.user_id')
         .where({ user_id: id })
-        .join('users as u', 'u.username', 'r.source' )
-        .where({source: username}).insert(recipeData);
+       .insert(recipeData);
         const newRecipe = await findById(recipe_ids[0])
         return newRecipe;
     } catch (err) {

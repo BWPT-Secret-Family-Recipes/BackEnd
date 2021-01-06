@@ -38,7 +38,7 @@ async function findRecipe(id) {
             db('recipe as r')
              .join('users as u', 'u.id', 'r.user_id')
              .join('category as c', 'c.id', 'r.category_id')
-             .select('r.id', 'u.username', 'r.title', 'r.ingredients', 'r.instructions', 'r.category', ) 
+             .select('r.id', 'u.username', 'r.title', 'r.ingredients', 'r.instructions', 'c.category_name', ) 
                 .where({ user_id: id })
         return recipe;
     } catch (err) {
