@@ -21,6 +21,20 @@ password: string
 
 }
 
+// Recipes
+
+{
+
+id: integer
+title: String
+ingredients: String
+instructions: string
+category_id: integer [1 = Breakfast, 2 = Lunch, 3 = Dinner]
+user_id: integer
+
+
+}
+
 ```
 
 ### Endpoints
@@ -66,6 +80,29 @@ Status Codes:
 -200: Success
 -401: Bad Request ~ Invalid Credentials
 -500: Server Error
+
+
+
+
+//Recipes by username (GET): "/api/users/:id/recipes"
+
+
+//New Recipe (Post): "/api/recipe"
+
+Required Fields: 
+
+{
+
+title: "",
+ingredients: "",
+instructions: "",
+category_id: "[1 = Breakfast, 2 = Lunch, 3 = Dinner]"
+user_id: ""
+
+}
+
+
+MORE ENDPOINTS COMMING SOON (Doing more tests rn)  ^_^
 
 ```
 
