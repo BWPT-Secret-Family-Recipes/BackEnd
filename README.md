@@ -102,7 +102,10 @@ user_id: ""
 }
 
 
-MORE ENDPOINTS COMMING SOON (Doing more tests rn)  ^_^
+//Update Recipe (PUT) : "/api/recipe/:id"
+
+
+//Delete Recipe (DELETE) : "/api/recipe/:id"
 
 ```
 
