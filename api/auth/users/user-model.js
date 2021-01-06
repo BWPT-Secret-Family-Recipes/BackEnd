@@ -35,11 +35,11 @@ async function findById(id) {
 async function findRecipe(id) {
     try {
         const recipe = await
-            db('recipe')
-                .join('users as u', 'u.id', 'recipe.user_id')
+            db('query as q')
+             .join('users as u', 'u.id', 'q.user_id')
+             .join('recipe as r', 'r.id', 'q.recipe_id')
+             .select('r.id', 'u.username', 'r.title', 'r.ingredients', 'r.instructions', 'r.categories', ) 
                 .where({ user_id: id })
-                .select('recipe.id', 'u.username', 'recipe.title', 'recipe.ingredients', 'recipe.instructions', 'recipe.category_id');
-
         return recipe;
     } catch (err) {
         throw err;

@@ -10,7 +10,8 @@ const db = require('../../../data/db-config');
 }
  
  function find() {
-    return db("recipe").select("id", "title", "source", "instructions", "ingredients", "category_id").orderBy("id");
+    return db("recipe")
+    .select("id", "title", "instructions", "ingredients", "categories").orderBy("id")
   }
 
 
