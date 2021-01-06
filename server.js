@@ -52,6 +52,7 @@ server.use('/api', ApiRouter);
 
 
 server.get("/", async (req, res) => {
+
   try {
     const recipe = await recipes.find();
     res.json(recipe);

@@ -36,7 +36,12 @@ router.get('/:id/recipes', async (req, res) => {
 
   try {
     const content = await users.findRecipe(id);
-    res.json(content);
+   if(content)
+   { 
+     res.json(content);
+   } else {
+    res.status(404).json({message: 'invalid id'})
+   }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'error with db', error: err });

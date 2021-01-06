@@ -30,17 +30,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get('/:id/recipe', async (req, res) => {
-  const { id } = req.params;
+// router.get('/:id/recipe', async (req, res) => {
+//   const { id } = req.params;
 
-  try {
-    const content = await recipes.findRecipe(id);
-    res.json(content);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'error with db', error: err });
-  }
-})
+//   try {
+//     const content = await recipes.findRecipe(id);
+//     res.json(content);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ message: 'error with db', error: err });
+//   }
+// })
 
 
 
